@@ -15,7 +15,7 @@ let quizData = require('./quiz_data.json');
         render() {
             const isQuizEnd = (this.state.quiz_position - 1) === quizData.quiz_questions.length;
             let quiz = (isQuizEnd)
-                ?  <QuizEnd/>
+                ?  <QuizEnd resetClickHandler={this.handleResetClick.bind(this)}/>
                 : <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]} showNextQuestionHandler={this.showNextQuestion.bind(this)}/>;
 
             return (
@@ -27,6 +27,10 @@ let quizData = require('./quiz_data.json');
 
         showNextQuestion() {
             this.setState({quiz_position: 1+1})
+        }
+
+        handleResetClick() {
+            this.setState({quiz_position: 1})
         }
     }
 
