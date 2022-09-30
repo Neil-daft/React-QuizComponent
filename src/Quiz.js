@@ -16,13 +16,17 @@ let quizData = require('./quiz_data.json');
             const isQuizEnd = (this.state.quiz_position - 1) === quizData.quiz_questions.length;
             let quiz = (isQuizEnd)
                 ?  <QuizEnd/>
-                : <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]}/>;
+                : <QuizQuestion quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]} showNextQuestionHandler={this.showNextQuestion.bind(this)}/>;
 
             return (
                 <div>
                     {quiz}
                 </div>
             )
+        }
+
+        showNextQuestion() {
+            this.setState({quiz_position: 1+1})
         }
     }
 
